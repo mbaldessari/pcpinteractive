@@ -68,14 +68,14 @@ class PcpArchive(object):
     pcparchive = ''
     ctx = None
     result = None
-    # keys is the metric string. Value is (type, sem, units)
-    pmns = {}
     data = None
 
     def __init__(self, pcp_fname, start=None, finish=None, interval=None):
         '''Opens a PCP archive and does an initial walk of the PMNS tree.
            start and finish must be in datetime format. Interval must be in
            seconds'''
+        # keys is the metric string. Value is (type, sem, units)
+        self.pmns = {}
         self.pcparchive = pcp_fname
         try:
             self.ctx = pmapi.pmContext(c_api.PM_CONTEXT_ARCHIVE, pcp_fname)
